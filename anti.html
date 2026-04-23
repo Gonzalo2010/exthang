@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMT Bypass - Lazarus Killer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 { color: #0f0; text-shadow: 0 0 10px #0f0; }
+        button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover { background: #0c0; }
+        #status {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 IMTLAZARUS BYPASS ACTIVADO</h1>
+    <p>Versión nuclear - Sin tocar servidores</p>
+    
+    <button onclick="lanzarBypass()">¡EJECUTAR BYPASS TOTAL!</button>
+    <button onclick="abrirProxies()">Abrir Proxies (YouTube, Roblox, Discord...)</button>
+    
+    <div id="status">Esperando acción...</div>
+
+    <script>
+        function lanzarBypass() {
+            const status = document.getElementById('status');
+            status.textContent = '🚀 Ejecutando bypass nuclear...';
+
+            try {
+                // 1. Abrir múltiples proxies fuertes con sitios populares
+                const proxies = [
+                    'https://croxyproxy.com/?url=',
+                    'https://proxyium.com/?url=',
+                    'https://9xbuddy.com/?url=',
+                    'https://translate.google.com/translate?sl=auto&tl=es&u='
+                ];
+                const targets = [
+                    'https://youtube.com',
+                    'https://www.youtube.com',
+                    'https://roblox.com',
+                    'https://www.roblox.com',
+                    'https://discord.com',
+                    'https://twitch.tv',
+                    'https://chatgpt.com'
+                ];
+
+                proxies.forEach(proxy => {
+                    targets.forEach(target => {
+                        window.open(proxy + encodeURIComponent(target), '_blank');
+                    });
+                });
+
+                // 2. Eliminar overlays y bloqueos de Lazarus
+                const selectorsToKill = [
+                    '#imt_release_school', '#imtl_innapropiated_content', 
+                    '#imtl_chat_restricted', '.nsfw-global-lockdown',
+                    '[id*="imt"]', '[class*="imt"]', '[id*="lazarus"]', '[class*="lazarus"]'
+                ];
+
+                selectorsToKill.forEach(sel => {
+                    document.querySelectorAll(sel).forEach(el => el.remove());
+                });
+
+                // 3. Restaurar visibilidad y funcionalidad
+                document.documentElement.style.cssText += 'filter: none !important; opacity: 1 !important;';
+                document.body.style.cssText += 'filter: none !important; opacity: 1 !important; pointer-events: auto !important;';
+
+                document.querySelectorAll('video, iframe, img, canvas, button, input').forEach(el => {
+                    el.style.cssText += 'filter: none !important; opacity: 1 !important; pointer-events: auto !important; display: block !important;';
+                    if (el.tagName === 'BUTTON' || el.tagName === 'INPUT') {
+                        el.disabled = false;
+                    }
+                });
+
+                // 4. Intentar restaurar cámara y micrófono en Meet/Teams/Canva
+                document.querySelectorAll('button[aria-label*="cámara"], button[aria-label*="camera"], button[aria-label*="micrófono"], button[aria-label*="microphone"], button[jsname]').forEach(btn => {
+                    btn.style.pointerEvents = 'auto';
+                    btn.disabled = false;
+                    if (btn.click) btn.click();
+                });
+
+                // 5. Matar observers y timers de la extensión (intento agresivo)
+                if (window.MutationObserver) {
+                    const observers = [];
+                    document.querySelectorAll('*').forEach(el => {
+                        if (el.__mutationObserver) observers.push(el.__mutationObserver);
+                    });
+                    observers.forEach(obs => obs && obs.disconnect && obs.disconnect());
+                }
+
+                status.innerHTML = '✅ <strong>BYPASS EJECUTADO CON ÉXITO</strong><br><br>' +
+                                  '• Proxies abiertos con YouTube, Roblox, Discord...<br>' +
+                                  '• Overlays y bloqueos eliminados<br>' +
+                                  '• Cámara y micrófono restaurados<br>' +
+                                  '• Filtros visuales desactivados';
+
+                alert('✅ IMTLazarus saturado - Bypass nuclear activado');
+
+            } catch(e) {
+                status.textContent = '❌ Error: ' + e.message;
+                console.error(e);
+            }
+        }
+
+        function abrirProxies() {
+            const proxies = ['https://croxyproxy.com/?url=', 'https://proxyium.com/?url='];
+            const targets = ['https://youtube.com', 'https://roblox.com', 'https://discord.com'];
+            proxies.forEach(p => {
+                targets.forEach(t => window.open(p + encodeURIComponent(t), '_blank'));
+            });
+            alert('Proxies abiertos en nuevas pestañas');
+        }
+
+        // Auto-ejecutar al cargar la página (para cuando lo inyectes vía XSS)
+        window.onload = () => {
+            setTimeout(() => {
+                if (confirm('¿Ejecutar bypass automático de IMTLazarus?')) {
+                    lanzarBypass();
+                }
+            }, 800);
+        };
+    </script>
+</body>
+</html>
